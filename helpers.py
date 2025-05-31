@@ -30,8 +30,17 @@ def update_user_budget(user_id, new_budget):
     if user:
         user.monthly_budget = new_budget
         session.commit()
+        
+        result = {
+            "name": user.name,
+            "monthly_budget": user.monthly_budget,
+            "currency": user.currency
+        }
+        session.close()
+        return result
     session.close()
-    return user
+    return None
+
 
 def delete_user(user_id):
     session = Session()
