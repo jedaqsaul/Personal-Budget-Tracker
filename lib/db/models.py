@@ -1,5 +1,8 @@
-from sqlalchemy import MetaData
+from sqlalchemy import MetaData, Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import declarative_base
+from datetime import datetime
+
+
 
 
 convention = {
@@ -12,3 +15,16 @@ convention = {
 
 metadata=MetaData(naming_convention=convention)
 Base=declarative_base(metadata=metadata)
+
+
+class User(Base):
+    __tablename__ ='users'
+
+
+    id=Column(Integer, primary_key=True)
+    name=Column(String)
+    email=Column(String, unique=True)
+    password=Column(String)
+    created_at=Column(DateTime(), default=datetime.now())
+    monthly_budget=Column(Float)
+    currency=Column(String)
