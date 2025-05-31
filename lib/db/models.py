@@ -1,5 +1,5 @@
-from sqlalchemy import MetaData, Column, Integer, String, Float, DateTime
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import MetaData, Column, Integer, String, Float, DateTime, ForeignKey
+from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime
 
 
@@ -28,3 +28,16 @@ class User(Base):
     created_at=Column(DateTime(), default=datetime.now())
     monthly_budget=Column(Float)
     currency=Column(String)
+
+    # let us add our relatinship code here
+    categories =relationship("Category", back_populates="user")
+
+class Category(Base):
+    __tablename__='categories'
+
+    id =Column(Integer, primary_key=True)
+    name =Column(String)
+    user_id=Column(Integer, ForeignKey('users.id'))
+
+    # we will now define our relationship
+    user=relationship("User", back_populates='categories')
