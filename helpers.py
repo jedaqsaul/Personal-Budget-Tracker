@@ -1,5 +1,6 @@
-from lib.db.models import User
-from lib.config.setup import Session
+from lib.models import User
+from config.setup import Session
+
 
 session=Session()
 
