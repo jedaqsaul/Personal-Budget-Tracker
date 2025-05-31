@@ -53,6 +53,12 @@ def delete_user(user_id):
     session.close()
     return False
 
+def get_all_users():
+    session=Session()
+    users=session.query(User).all()
+    session.close()
+    return users
+
     
 
 

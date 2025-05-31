@@ -1,12 +1,13 @@
-from helpers import add_user, get_user_by_email, update_user_budget, delete_user
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users
 
 def main_menu():
     while True:
         print("\n--- Personal Budget Tracker ---")
         print("1. Add User")
         print("2. View User by email")
-        print("3. Insert user ID to update: ")
+        print("3. Update User budget: ")
         print("4. Delete User: ")
+        print("5. List all Users: ")
         print("0. Exit")
 
 
@@ -41,12 +42,24 @@ def main_menu():
                 print(f"User {user_data['name']}'s budget updated to {user_data['monthly_budget']} {user_data['currency']}")
             else:
                  print("User not found or update failed.")
+
+
+
         elif choice=="4":
             user_id=int(input("Enter user Id to delete: "))
             if delete_user(user_id):
                 print("User deleted successfully. ")
             else:
                 print("User not found. ")
+
+        elif choice =="5":
+            users=get_all_users()
+            if users:
+                print("\nAll Users: ")
+                for user in users:
+                    print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Budget: {user.monthly_budget} {user.currency}")
+            else:
+                print("No users found. ")
 
 
 
