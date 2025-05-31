@@ -1,4 +1,4 @@
-from helpers import add_user, get_user_by_email, update_user_budget
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user
 
 def main_menu():
     while True:
@@ -6,6 +6,7 @@ def main_menu():
         print("1. Add User")
         print("2. View User by email")
         print("3. Insert user ID to update: ")
+        print("4. Delete User: ")
         print("0. Exit")
 
 
@@ -40,6 +41,13 @@ def main_menu():
                 print(f"User {user_data['name']}'s budget updated to {user_data['monthly_budget']} {user_data['currency']}")
             else:
                  print("User not found or update failed.")
+        elif choice=="4":
+            user_id=int(input("Enter user Id to delete: "))
+            if delete_user(user_id):
+                print("User deleted successfully. ")
+            else:
+                print("User not found. ")
+
 
 
 
