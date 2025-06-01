@@ -1,4 +1,4 @@
-from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories, add_category
 
 def main_menu():
     while True:
@@ -9,6 +9,7 @@ def main_menu():
         print("4. Delete User: ")
         print("5. List all Users: ")
         print("6. View all categories: ")
+        print("7. Add a new category: ")
         print("0. Exit")
 
 
@@ -69,6 +70,12 @@ def main_menu():
                     print(f"- {cat.name}")
             else:
                 print("No categories found. ")
+
+
+        elif choice=="7":
+            name =input("Enter new category name: ")
+            category=add_category(name)
+            print(f"Category '{category.name}' added successfully. ")
         
 
 

@@ -66,6 +66,15 @@ def get_all_categories():
     session.close()
     return categories
 
+
+def add_category(name):
+    session=Session()
+    category=Category(name=name)
+    session.add(category)
+    session.commit()
+    session.close()
+    return category
+
     
 
 
