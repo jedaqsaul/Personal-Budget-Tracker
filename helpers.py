@@ -126,6 +126,28 @@ def getting_spending_by_category(user_id):
     session.close()
     return results
 
+
+def get_budget_summary(user_id):
+    session = Session()
+
+    
+    user = session.query(User).get(user_id)
+    total_spent = session.query(func.sum(Transaction.amount)).filter(Transaction.user_id == user_id).scalar() or 0
+
+    remaining_budget = user.monthly_budget - total_spent
+    percent_used = (total_spent / user.monthly_budget) * 100 if user.monthly_budget > 0 else 0
+
+    session.close()
+
+    return {
+        "name": user.name,
+        "total_spent": total_spent,
+        "budget": user.monthly_budget,
+        "remaining": remaining_budget,
+        "percent_used": percent_used,
+        "currency": user.currency
+    }
+
     
 
 
