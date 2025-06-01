@@ -1,4 +1,4 @@
-from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories, add_category,add_transaction
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories, add_category,add_transaction,get_transaction_by_user
 
 from datetime import datetime
 def main_menu():
@@ -12,6 +12,7 @@ def main_menu():
         print("6. View all categories: ")
         print("7. Add a new category: ")
         print("8. Add Transaction: ")
+        print("9. Get a single user transaction: ")
         print("0. Exit")
 
 
@@ -102,6 +103,20 @@ def main_menu():
                 print(f"Transaction added: {transaction.amount} on {transaction.date} as {transaction.type}")
             except Exception as e:
                 print(f"Error adding transaction: {e}")
+
+        elif choice == "9":
+            try:
+                user_id = int(input("Enter User ID to view transactions: "))
+                transactions = get_transaction_by_user(user_id)
+
+                if not transactions:
+                    print("No transactions found for this user.")
+                else:
+                    print("\nTransactions:")
+                    for t in transactions:
+                        print(f"ID: {t.id} | Amount: {t.amount} | Type: {t.type} | Date: {t.date.date()} | Category ID: {t.category_id}")
+            except Exception as e:
+                print(f"Error retrieving transactions: {e}")
                     
 
 

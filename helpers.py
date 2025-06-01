@@ -103,6 +103,13 @@ def add_transaction(user_id, category_id, amount, date=None, type=None):
 
     return transaction
 
+
+def get_transaction_by_user(user_id):
+    session=Session()
+    transactions=session.query(Transaction).filter(Transaction.user_id==user_id).all()
+    session.close()
+    return transactions
+
     
 
 
