@@ -1,5 +1,6 @@
-from lib.models import User, Category
+from lib.models import User, Category, Transaction
 from config.setup import Session
+from datetime import datetime
 
 
 session=Session()
@@ -74,6 +75,33 @@ def add_category(name):
     session.commit()
     session.close()
     return category
+
+
+def add_transaction(user_id, category_id, amount, date=None, type=None):
+    session=Session()
+
+
+    if date is None:
+        date=datetime.now()
+
+    if not type:
+        session.close()
+        raise ValueError("Transaction type is required")
+
+    transaction=Transaction(
+        user_id=user_id,
+        category_id=category_id,
+        amount=amount,
+        date=date,
+        type=type
+    )
+
+    session.add(transaction)
+    session.commit()
+    session.close()
+
+
+    return transaction
 
     
 

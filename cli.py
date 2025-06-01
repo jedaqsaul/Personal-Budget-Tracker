@@ -1,5 +1,6 @@
-from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories, add_category
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories, add_category,add_transaction
 
+from datetime import datetime
 def main_menu():
     while True:
         print("\n--- Personal Budget Tracker ---")
@@ -10,6 +11,7 @@ def main_menu():
         print("5. List all Users: ")
         print("6. View all categories: ")
         print("7. Add a new category: ")
+        print("8. Add Transaction: ")
         print("0. Exit")
 
 
@@ -77,6 +79,31 @@ def main_menu():
             category=add_category(name)
             print(f"Category '{category.name}' added successfully. ")
         
+
+        elif choice=="8":
+            try:
+                user_id=int(input("Enter User ID: "))
+                category_id=int(input("Enter Category ID: "))
+                amount=float(input("Enter amount: "))
+                type = input("Enter type ('income' or 'expense'): ").strip().lower()
+
+                if type not in ['income', 'expense']:
+                     print("Invalid type. Please enter 'income' or 'expense'.")
+                else:
+                    date_input = input("Enter date (YYYY-MM-DD) or leave blank for today: ")
+
+                if date_input:
+                    from datetime import datetime
+                    date = datetime.strptime(date_input, "%Y-%m-%d")
+                else:
+                    date=None
+
+                transaction=add_transaction(user_id, category_id, amount, date, type)
+                print(f"Transaction added: {transaction.amount} on {transaction.date} as {transaction.type}")
+            except Exception as e:
+                print(f"Error adding transaction: {e}")
+                    
+
 
 
 
