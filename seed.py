@@ -5,7 +5,7 @@ from config.setup import Session
 def seed_categories():
     session=Session()
     default_categories=[
-        "Groceries", "Rent", "Utilities", "Transportation", "Entertainment", "Healthcare", "Education", "Savings", "Enjoyment"
+        "Groceries", "Rent", "Utilities", "Transportation", "Entertainment", "Healthcare", "Education", "Savings", "Enjoyment", "Other"
     ]
     for name in default_categories:
         if not session.query(Category).filter_by(name=name).first():
