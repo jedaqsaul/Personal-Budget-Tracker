@@ -1,4 +1,4 @@
-from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users
+from helpers import add_user, get_user_by_email, update_user_budget, delete_user,get_all_users,get_all_categories
 
 def main_menu():
     while True:
@@ -8,6 +8,7 @@ def main_menu():
         print("3. Update User budget: ")
         print("4. Delete User: ")
         print("5. List all Users: ")
+        print("6. View all categories: ")
         print("0. Exit")
 
 
@@ -60,6 +61,15 @@ def main_menu():
                     print(f"ID: {user.id}, Name: {user.name}, Email: {user.email}, Budget: {user.monthly_budget} {user.currency}")
             else:
                 print("No users found. ")
+        elif choice=="6":
+            categories=get_all_categories()
+            if categories:
+                print("\nAvailable Categories: ")
+                for cat in categories:
+                    print(f"- {cat.name}")
+            else:
+                print("No categories found. ")
+        
 
 
 

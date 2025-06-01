@@ -1,4 +1,4 @@
-from lib.models import User
+from lib.models import User, Category
 from config.setup import Session
 
 
@@ -58,6 +58,13 @@ def get_all_users():
     users=session.query(User).all()
     session.close()
     return users
+
+
+def get_all_categories():
+    session=Session()
+    categories=session.query(Category).all()
+    session.close()
+    return categories
 
     
 
