@@ -1,3 +1,4 @@
+from sqlalchemy import func
 from lib.models import User, Category, Transaction
 from config.setup import Session
 from datetime import datetime
@@ -109,6 +110,21 @@ def get_transaction_by_user(user_id):
     transactions=session.query(Transaction).filter(Transaction.user_id==user_id).all()
     session.close()
     return transactions
+
+
+
+def getting_spending_by_category(user_id):
+    session=Session()
+
+    results=(
+        session.query(Category.name, func.sum(Transaction.amount))
+        .join(Transaction, Transaction.category_id ==Category.id)
+        .filter(Transaction.user_id ==user_id)
+        .group_by(Category.name)
+        .all()
+    )
+    session.close()
+    return results
 
     
 
