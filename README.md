@@ -18,20 +18,27 @@ A terminal-based personal budgeting tool that allows users to track expenses by 
 - SQLite (for local database)
 
 ## Project Structure
-
-├── cli.py # Main entry point for the interactive CLI
+personal-budget-tracker/
+├── alembic.ini
+├── cli.py
 ├── config/
-│ └── setup.py # Configures and connects to the database
+│   └── setup.py
 ├── db/
-│ └── store.db # SQLite database file
+│   └── store.db
 ├── lib/
-│ ├── models.py # SQLAlchemy models for User, Category, Transaction
-├── seed.py # Script to seed initial data (e.g., default categories)
-├── helpers.py # Helper functions for user, category, and transaction logic
-├── debug.py # Optional debug script for testing functions
-├── migrations/ # Alembic migration files
-├── alembic.ini # Alembic configuration
-├── README.md # Project documentation
+│   ├── models.py  
+├── helpers.py
+├── migrations/
+│   ├── env.py
+│   ├── README
+│   ├── script.py.mako
+│   └── versions/
+│       └── [migration files].py
+├── seed.py
+├── Pipfile
+├── Pipfile.lock
+├── README.md
+└── debug.py
 
 
 ## Models & Relationships
